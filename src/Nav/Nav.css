@@ -1,0 +1,13 @@
+.nav {
+    background-color: #efb9cb;
+    text-align: center;
+    padding-bottom: 8px;
+}
+
+.nav-item {
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    color: black;
+}

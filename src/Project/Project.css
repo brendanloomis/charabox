@@ -1,0 +1,15 @@
+.project {
+    background-color: #e6adec;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.project h3 {
+    font-size: 27px;
+}
+
+.project-link {
+    text-decoration: none;
+    color: black;
+}
