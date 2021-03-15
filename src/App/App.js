@@ -6,6 +6,11 @@ import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import ProjectList from '../ProjectList/ProjectList';
 import ProjectPage from '../ProjectPage/ProjectPage';
+import AddProject from '../AddProject/AddProject';
+import EditProject from '../EditProject/EditProject';
+import AddCharacter from '../AddCharacter/AddCharacter';
+import EditCharacter from '../EditCharacter/EditCharacter';
+import AddNote from '../AddNote/AddNote';
 import store from '../store';
 import './App.css';
 
@@ -45,6 +50,51 @@ class App extends React.Component {
               projects={projects}
               characters={characters}
               notes={notes}
+              {...props}
+            />
+          )}
+        />
+        <Route
+          exact
+          path='/add-project'
+          render={(props) => (
+            <AddProject
+              {...props}
+            />
+          )}
+        />
+        <Route
+          exact
+          path='/edit-project'
+          render={(props) => (
+            <EditProject
+              {...props}
+            />
+          )}
+        />
+        <Route
+          exact
+          path='/add-character'
+          render={(props) => (
+            <AddCharacter
+              {...props}
+            />
+          )}
+        />
+        <Route
+          exact
+          path='/edit-character'
+          render={(props) => (
+            <EditCharacter
+              {...props}
+            />
+          )}
+        />
+        <Route
+          exact
+          path='/add-note'
+          render={(props) => (
+            <AddNote
               {...props}
             />
           )}

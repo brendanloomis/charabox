@@ -7,8 +7,6 @@ class Note extends React.Component {
             <div className='note'>
                 <p>{this.props.note}</p>
                 <div className='note-buttons'>
-                    <button>Edit</button>
-                    {' '}
                     <button>Delete</button>
                 </div>
             </div>

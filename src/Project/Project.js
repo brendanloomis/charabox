@@ -14,7 +14,9 @@ class Project extends React.Component {
                 <p>Type: {this.props.project_type}</p>
                 <p>Summary: {this.props.project_summary}</p>
                 <div className='project-buttons'>
-                    <button>Edit</button>
+                    <Link to='/edit-project'>
+                        <button>Edit</button>
+                    </Link>
                     {' '}
                     <button>Delete</button>
                 </div>

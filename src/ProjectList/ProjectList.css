@@ -16,3 +16,7 @@
 .project-list {
     margin-bottom: 20px;
 }
+
+.add-project-link {
+    text-decoration: none;
+}

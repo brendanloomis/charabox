@@ -1,5 +1,6 @@
 import React from 'react';
 import Project from '../Project/Project';
+import { Link } from 'react-router-dom';
 import './ProjectList.css';
 
 class ProjectList extends React.Component {
@@ -20,7 +21,9 @@ class ProjectList extends React.Component {
                 <ul>
                     {projects}
                 </ul>
-                <button id='add-project-button'>Add Project</button>
+                <Link to='/add-project' className='add-project-link'>
+                    <button id='add-project-button'>Add Project</button>
+                </Link>
             </div>
         );
     }

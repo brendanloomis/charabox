@@ -1,0 +1,28 @@
+.add-note {
+    background-color: #e6adec;
+    display: block;
+    margin: auto;
+    width: 80%;
+    padding: 10%;
+    margin-top: 50px;
+    text-align: center;
+    color: #060f13;
+}
+
+.add-note h2 {
+    margin-top: 0px;
+    font-size: 35px;
+}
+
+.add-note-form label{
+    margin: 10px;
+}
+
+/* Responsive design for desktop */
+@media all and (min-width: 800px) {
+    .add-note {
+        width: 500px;
+        padding: 50px;
+        margin-top: 50px;
+    }
+}

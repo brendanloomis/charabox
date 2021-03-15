@@ -1,6 +1,7 @@
 import React from 'react';
 import { findProject, getCharactersForProject } from '../helper-functions';
 import Character from '../Character/Character';
+import { Link } from 'react-router-dom';
 import './ProjectPage.css';
 
 class ProjectPage extends React.Component {
@@ -19,6 +20,9 @@ class ProjectPage extends React.Component {
                 <h2>{project.project_name}</h2>
                 <button onClick={() => this.props.history.goBack()} className='project-page-button'>Back</button>
                 {characters}
+                <Link to='/add-character' className='add-character-link'>
+                    <button id='add-character-button'>Add Character</button>
+                </Link>
             </div>
         );
     }

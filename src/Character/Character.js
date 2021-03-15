@@ -1,6 +1,7 @@
 import React from 'react';
 import { getNotesForCharacter } from '../helper-functions';
 import Note from '../Note/Note';
+import { Link } from 'react-router-dom';
 import './Character.css';
 
 class Character extends React.Component {
@@ -19,10 +20,14 @@ class Character extends React.Component {
                 <p>Role: {this.props.role}</p>
                 <p>Interests: {this.props.interests}</p>
                 <p>Personality: {this.props.personality}</p>
-                <button>Edit</button>
+                <Link to='/edit-character'>
+                    <button>Edit</button>
+                </Link>
                 <h4>Notes:</h4>
                 {notes}
-                <button>Add Note</button>
+                <Link to='/add-note'>
+                    <button>Add Note</button>
+                </Link>
             </div>
         );
     }

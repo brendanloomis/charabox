@@ -1,0 +1,28 @@
+.edit-project {
+    background-color: #e6adec;
+    display: block;
+    margin: auto;
+    width: 80%;
+    padding: 10%;
+    margin-top: 50px;
+    text-align: center;
+    color: #060f13;
+}
+
+.edit-project h2 {
+    margin-top: 0px;
+    font-size: 35px;
+}
+
+.edit-project-form label{
+    margin: 10px;
+}
+
+/* Responsive design for desktop */
+@media all and (min-width: 800px) {
+    .edit-project {
+        width: 500px;
+        padding: 50px;
+        margin-top: 50px;
+    }
+}

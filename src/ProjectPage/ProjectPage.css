@@ -17,3 +17,12 @@
     margin: auto;
     margin-bottom: 20px;
 }
+
+#add-character-button {
+    display: block;
+    margin: auto;
+}
+
+.add-character-link {
+    text-decoration: none;
+}
