@@ -303,7 +303,10 @@ class App extends React.Component {
   }
 
   getProjects = (projects) => {
-    this.setState({ projects });
+    this.setState({ 
+      projects,
+      loadedProjects: true
+    });
   }
 
   getCharacters = (characters) => {
