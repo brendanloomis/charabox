@@ -114,6 +114,11 @@ class Login extends React.Component {
                         </Link>
                     </div>
                 </form>
+                <div className='demo'>
+                    <p>For demo account (case sensitive):</p> 
+                    <p>username: demo</p>
+                    <p>password: pass123word</p>
+                </div>
                 <p>
                     Don't have an account?
                     <Link to='/signup'>
