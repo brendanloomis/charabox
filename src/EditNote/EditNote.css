@@ -1,0 +1,24 @@
+.edit-note {
+    background-color: #e6adec;
+    display: block;
+    margin: auto;
+    width: 80%;
+    padding: 10%;
+    margin-top: 50px;
+    text-align: center;
+    color: #060f13;
+}
+
+.edit-note h2 {
+    margin-top: 0px;
+    font-size: 35px;
+}
+
+/* Responsive design for desktop */
+@media all and (min-width: 800px) {
+    .edit-note {
+        width: 500px;
+        padding: 50px;
+        margin-top: 50px;
+    }
+}

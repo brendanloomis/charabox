@@ -1,0 +1,15 @@
+.project-form label{
+    margin: 5px;
+}
+
+.project-form input {
+    margin-top: 5px;
+}
+
+.project-form-buttons {
+    margin: 10px;
+}
+
+.project-form div {
+    margin: 10px;
+}

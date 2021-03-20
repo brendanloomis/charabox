@@ -1,66 +1,60 @@
 import React from 'react';
+import CharacterForm from '../CharacterForm/CharacterForm';
+import CharaboxContext from '../CharaboxContext';
+import config from '../config';
 import './AddCharacter.css';
 
 class AddCharacter extends React.Component {
+    state = {
+        error: null
+    };
+
+    static contextType = CharaboxContext;
+
+    handleSubmit = (character) => {
+        this.setState({ error: null });
+        
+        fetch(`${config.API_ENDPOINT}/characters`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${config.API_KEY}`
+            },
+            body: JSON.stringify(character)
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error;
+                    });
+                }
+                return res.json();
+            })
+            .then(data => {
+                this.context.addCharacter(data);
+                this.props.history.push(`/projects/${data.project}/${data.character_id}`);
+            })
+            .catch(error => {
+                console.error(error);
+                this.setState({ error });
+            });
+    }
+
+    handleClickCancel = () => {
+        this.props.history.goBack();
+    }
+
     render() {
+        const { project } = this.props.match.params;
         return (
             <div className='add-character'>
                 <h2>Add Character</h2>
-                <form className='add-character-form'>
-                    <div>
-                        <label htmlFor='name'>Name</label>
-                        <input
-                            type='text'
-                            name='name'
-                            id='name'
-                            required
-                        />                    
-                    </div>
-                    <div>
-                        <label htmlFor='age'>Age</label>
-                        <input
-                            type='text'
-                            name='age'
-                            id='age'
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='occupation'>Occupation</label>
-                        <input
-                            type='text'
-                            name='occupation'
-                            id='occupation'
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='role'>Role</label>
-                        <input 
-                            type='text'
-                            name='role'
-                            id='role'
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='interests'>Interests</label>
-                        <input
-                            type='text'
-                            name='interests'
-                            id='interests'
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='personality'>Personality</label>
-                        <input
-                            type='text'
-                            name='personality'
-                            id='personality'
-                        />
-                    </div>
-                    <div className='add-character-buttons'>
-                        <button type='submit'>Submit</button>
-                        <button onClick={() => this.props.history.goBack()}>Cancel</button>
-                    </div>
-                </form>
+                <CharacterForm
+                    error={this.state.error}
+                    onSubmit={this.handleSubmit}
+                    onCancel={this.handleClickCancel}
+                    project={project}
+                />
             </div>
         );
     }

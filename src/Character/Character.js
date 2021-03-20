@@ -1,31 +1,98 @@
 import React from 'react';
-import { getNotesForCharacter } from '../helper-functions';
+import { findCharacter, getNotesForCharacter } from '../helper-functions';
 import Note from '../Note/Note';
 import { Link } from 'react-router-dom';
+import CharaboxContext from '../CharaboxContext';
+import config from '../config';
 import './Character.css';
 
 class Character extends React.Component {
+    static contextType = CharaboxContext;
+
+    componentDidMount() {
+        const { characterId } = this.props.match.params;
+
+        fetch(`${config.API_ENDPOINT}/notes?characterId=${characterId}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${config.API_KEY}`
+            }
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error;
+                    });
+                }
+                return res.json();
+            })
+            .then(notes => {
+                this.context.getNotes(notes);
+            })
+            .catch(error => {
+                console.error({ error });
+            });
+    }
+
+    handleDelete = (character_id) => {
+        fetch(`${config.API_ENDPOINT}/characters/${character_id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${config.API_KEY}`
+            }
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error;
+                    });
+                }
+            })
+            .then(() => {
+                this.props.history.push(`/projects/${this.props.match.params.projectId}`)
+                this.context.deleteCharacter(character_id);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
     render() {
-        const notesForChar = getNotesForCharacter(this.props.notes, this.props.character_id);
-        const notes = notesForChar.map(note => (
+        const { characterId, projectId } = this.props.match.params;
+        const character = findCharacter(this.context.characters, characterId);
+        const notesForChar = getNotesForCharacter(this.context.notes, characterId);
+        const notes = notesForChar.sort((a, b) => a.note_id - b.note_id).map(note => (
             <Note
+                key={note.note_id}
                 {...note}
+                characterId={characterId}
+                projectId={projectId}
             />
         ));
         return (
             <div className='character'>
-                <h3>{this.props.name}</h3>
-                <p>Age: {this.props.age}</p>
-                <p>Occupation: {this.props.occupation}</p>
-                <p>Role: {this.props.role}</p>
-                <p>Interests: {this.props.interests}</p>
-                <p>Personality: {this.props.personality}</p>
-                <Link to='/edit-character'>
-                    <button>Edit</button>
-                </Link>
+                <h3>{character.name}</h3>
+                <p>Age: {character.age}</p>
+                <p>Occupation: {character.occupation}</p>
+                <p>Role: {character.role}</p>
+                <p>Interests: {character.interests}</p>
+                <p>Personality: {character.personality}</p>
+                <div className='character-buttons'>
+                    <Link to={`/edit-character/${characterId}`}>
+                        <button>Edit</button>
+                    </Link>
+                    {' '}
+                    <button
+                        onClick={() => this.handleDelete(character.character_id)}
+                    >
+                        Delete
+                    </button>
+                </div>
                 <h4>Notes:</h4>
                 {notes}
-                <Link to='/add-note'>
+                <Link to={`/add-note/${character.project}/${characterId}`}>
                     <button>Add Note</button>
                 </Link>
             </div>

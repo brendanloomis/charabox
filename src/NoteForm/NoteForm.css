@@ -1,0 +1,15 @@
+.note-form label{
+    margin: 5px;
+}
+
+.note-form input {
+    margin-top: 5px;
+}
+
+.note-form-buttons {
+    margin: 10px;
+}
+
+.note-form div {
+    margin: 10px;
+}

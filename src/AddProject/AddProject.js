@@ -1,42 +1,58 @@
 import React from 'react';
+import ProjectForm from '../ProjectForm/ProjectForm';
+import CharaboxContext from '../CharaboxContext';
+import config from '../config';
 import './AddProject.css';
 
 class AddProject extends React.Component {
+    state = {
+        error: null
+    };
+
+    static contextType = CharaboxContext;
+
+    handleSubmit = (project) => {
+        this.setState({ error: null });
+        
+        fetch(`${config.API_ENDPOINT}/projects`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${config.API_KEY}`
+            },
+            body: JSON.stringify(project)
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error;
+                    });
+                }
+                return res.json();
+            })
+            .then(data => {
+                this.context.addProject(data);
+                this.props.history.push(`/projects/${data.project_id}`);
+            })
+            .catch(error => {
+                console.error(error);
+                this.setState({ error });
+            });
+    }
+
+    handleClickCancel = () => {
+        this.props.history.goBack();
+    }
+
     render() {
         return (
             <div className='add-project'>
                 <h2>Add Project</h2>
-                <form className='add-project-form'>
-                    <div>
-                        <label htmlFor='project-name'>Project Name</label>
-                        <input 
-                            type='text'
-                            name='project-name'
-                            id='project-name'
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='project-type'>Project Type</label>
-                        <input
-                            type='text'
-                            name='project-type'
-                            id='project-type'
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='project-summary'>Project Summary</label>
-                        <textarea
-                            name='project-summary'
-                            id='project-summary'
-                        />
-                    </div>
-                    <div className='add-project-buttons'>
-                        <button type='submit'>Submit</button>
-                        <button onClick={() => this.props.history.goBack()}>Cancel</button>
-                    </div>
-                </form>
+                <ProjectForm 
+                    error={this.state.error}
+                    onSubmit={this.handleSubmit}
+                    onCancel={this.handleClickCancel}
+                />
             </div>
         );
     }

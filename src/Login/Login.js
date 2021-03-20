@@ -1,19 +1,97 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import config from '../config';
+import CharaboxContext from '../CharaboxContext';
+import ValidationError from '../ValidationError';
 import './Login.css';
 
 class Login extends React.Component {
+    state = {
+        username: '',
+        password: '',
+        error: false
+    };
+
+    static contextType = CharaboxContext;
+
+    // functions to update state for form inputs
+    updateUsername(username) {
+        this.setState({ username });
+    }
+
+    updatePassword(password) {
+        this.setState({ password });
+    }
+
+    handleLogin = event => {
+        event.preventDefault();
+        const login = {
+            username: this.state.username,
+            password: this.state.password
+        };
+
+        fetch(`${config.API_ENDPOINT}/users/login`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${config.API_KEY}`
+            },
+            body: JSON.stringify(login)
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error;
+                    });
+                }
+                return res.json();
+            })
+            .then(user => {
+                this.context.loginUser(user);
+                localStorage.setItem('cbUser', JSON.stringify(user));
+                this.props.history.push('/projects');
+                return user.user_id;
+            })
+            .then(userId => {
+                return fetch(`${config.API_ENDPOINT}/projects?userId=${userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'content-type': 'application/json',
+                        'authorization': `bearer ${config.API_KEY}`
+                    }
+                })
+            })
+            .then(res => {
+                if(!res.ok) {
+                    return res.json().then(error => {
+                        throw error;
+                    });
+                }
+                return res.json();
+            })
+            .then(projects => {
+                this.context.getProjects(projects);
+            })
+            .catch(error => {
+                this.setState({
+                    error: true
+                });
+                console.error(error);
+            });
+    }
+
     render() {
         return (
             <div className='login'>
                 <h2>Log In</h2>
-                <form className='login-form'>
+                <form className='login-form' onSubmit={this.handleLogin}>
                     <div>
                         <label htmlFor='username'>Username</label>
                         <input
                             type='text'
                             name='username'
                             id='username'
+                            onChange={e => this.updateUsername(e.target.value)}
                             required
                         />
                     </div>
@@ -23,9 +101,11 @@ class Login extends React.Component {
                             type='password'
                             name='password'
                             id='password'
+                            onChange={e => this.updatePassword(e.target.value)}
                             required
                         />
                     </div>
+                    {this.state.error && <ValidationError message='Invalid username or password' />}
                     <div className='login-buttons'>
                         <button type='submit'>Log In</button>
                         {' '}

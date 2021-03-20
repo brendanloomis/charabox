@@ -1,34 +1,60 @@
 import React from 'react';
+import NoteForm from '../NoteForm/NoteForm';
+import config from '../config';
 import './AddNote.css';
+import CharaboxContext from '../CharaboxContext';
 
 class AddNote extends React.Component {
+    state = {
+        error: null
+    };
+
+    static contextType = CharaboxContext;
+
+    handleSubmit = (note) => {
+        this.setState({ error: null });
+        
+        fetch(`${config.API_ENDPOINT}/notes`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${config.API_KEY}`
+            },
+            body: JSON.stringify(note)
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error;
+                    });
+                }
+                return res.json();
+            })
+            .then(data => {
+                this.context.addNote(data);
+                this.props.history.goBack();
+            })
+            .catch(error => {
+                console.error(error);
+                this.setState({ error });
+            });
+    }
+
+    handleClickCancel = () => {
+        this.props.history.goBack();
+    }
+
     render() {
+        const { character } = this.props.match.params;
         return (
             <div className='add-note'>
                 <h2>Add Note</h2>
-                <form className='add-note-form'>
-                    <div>
-                        <label htmlFor='character'>Character</label>
-                        <input 
-                            type='text'
-                            name='character'
-                            id='character'
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='note'>Note</label>
-                        <textarea
-                            name='note'
-                            id='note'
-                            required
-                        />
-                    </div>
-                    <div className='add-note-buttons'>
-                        <button type='submit'>Submit</button>
-                        <button onClick={() => this.props.history.goBack()}>Cancel</button>
-                    </div>
-                </form>
+                <NoteForm
+                    error={this.state.error}
+                    onSubmit={this.handleSubmit}
+                    onCancel={this.handleClickCancel}
+                    character={character}
+                />
             </div>
         );
     }

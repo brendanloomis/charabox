@@ -1,0 +1,15 @@
+.character-form label{
+    margin: 5px;
+}
+
+.character-form input {
+    margin-top: 5px;
+}
+
+.character-form-buttons {
+    margin: 10px;
+}
+
+.character-form div {
+    margin: 10px;
+}
