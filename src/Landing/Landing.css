@@ -13,6 +13,8 @@
 
 .landing section {
     padding: 10px;
+    background-color: #beccf1;
+    margin: 10px
 }
 
 .landing p {
@@ -21,7 +23,7 @@
 
 .landing-signup {
     text-decoration: none;
-    color: #8c33c7;
+    color: #e00c6f;
 }
 
 @media all and (min-width: 800px) {

@@ -1,5 +1,5 @@
 .login {
-    background-color: #e6adec;
+    background-color: #beccf1;
     display: block;
     margin: auto;
     width: 80%;
@@ -16,11 +16,12 @@
 }
 
 .login-form label{
-    margin: 5px;
+    margin: 5px 0px;
+    display: block;
 }
 
 .login-form input {
-    margin-top: 5px;
+    margin-top: 5px 0px;
 }
 
 .login-buttons {
@@ -29,6 +30,7 @@
 
 .login-form div {
     margin: 10px;
+    text-align: center;
 }
 
 .signup-link {
@@ -44,15 +46,26 @@
 @media all and (min-width: 800px) {
     .login {
         width: 500px;
-        padding: 50px;
+        padding: 50px 80px;
         margin-top: 50px;
+        text-align: left;
     }
 
-    #password {
-        margin-left: 5px;
+    .login h2 {
+        text-align: center;
     }
 
-    .login-form input {
-        margin-top: 0px;
+    .login label {
+        display: inline-block;
+        font-size: 20px;
+    }
+
+    .login input {
+        float: right;
+        margin-top: 5px;
+    }
+
+    .login p {
+        text-align: center;
     }
 }

@@ -65,14 +65,19 @@ class ProjectForm extends React.Component {
                 </div>
                 <div>
                     <label htmlFor='project-type'>Project Type</label>
-                    <input
-                        type='text'
+                    <select
                         name='project-type'
                         id='project-type'
                         required
                         value={project_type}
                         onChange={e => this.updateProjectType(e.target.value)}
-                    />
+                    >
+                        <option value='Movie'>Movie</option>
+                        <option value='Book'>Book</option>
+                        <option value='Television'>Television</option>
+                        <option value='Play'>Play</option>
+                        <option value='Game'>Game</option>
+                    </select>
                 </div>
                 <div>
                     <label htmlFor='project-summary'>Project Summary</label>

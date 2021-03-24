@@ -1,5 +1,5 @@
 .signup {
-    background-color: #e6adec;
+    background-color: #beccf1;
     display: block;
     margin: auto;
     width: 80%;
@@ -16,15 +16,17 @@
 }
 
 .signup-form label {
-    margin: 5px;
+    margin: 5px 0px;
+    display: block;
 }
 
 .signup-form input {
-    margin: 5px;
+    margin: 5px 0px;
 }
 
 .signup-buttons {
     margin: 10px;
+    text-align: center;
 }
 
 .login-link {
@@ -35,23 +37,25 @@
 @media all and (min-width: 800px) {
     .signup {
         width: 500px;
-        padding: 50px;
+        padding: 50px 80px;
         margin-top: 50px;
+        text-align: left;
     }
 
-    #password {
-        margin-left: 60px;
+    .signup h2 {
+        text-align: center;
     }
 
-    #username {
-        margin-left: 54px;
+    .signup label {
+        display: inline-block;
+        font-size: 20px;
     }
 
-    #last-name {
-        margin-left: 51px;
+    .signup input {
+        float: right;
     }
 
-    #first-name {
-        margin-left: 50px;
+    .signup p {
+        text-align: center;
     }
 }

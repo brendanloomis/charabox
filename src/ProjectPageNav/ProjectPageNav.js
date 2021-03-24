@@ -23,6 +23,9 @@ class ProjectPageNav extends React.Component {
                 <Link to={`/add-character/${projectId}`} className='project-nav-item'>
                     Add Character
                 </Link>
+                <Link to='/projects' className='project-nav-item'>
+                    Back
+                </Link>
             </div>
         );
     }

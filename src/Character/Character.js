@@ -74,11 +74,13 @@ class Character extends React.Component {
         return (
             <div className='character'>
                 <h3>{character.name}</h3>
-                <p>Age: {character.age}</p>
-                <p>Occupation: {character.occupation}</p>
-                <p>Role: {character.role}</p>
-                <p>Interests: {character.interests}</p>
-                <p>Personality: {character.personality}</p>
+                <div className='character-info'>
+                    <p>Age: {character.age}</p>
+                    <p>Occupation: {character.occupation}</p>
+                    <p>Role: {character.role}</p>
+                    <p>Interests: {character.interests}</p>
+                    <p>Personality: {character.personality}</p>
+                </div>
                 <div className='character-buttons'>
                     <Link to={`/edit-character/${characterId}`}>
                         <button>Edit</button>

@@ -33,7 +33,9 @@ class Note extends React.Component {
     render() {
         return (
             <div className='note'>
-                <p>{this.props.note}</p>
+                <div className='note-content'>
+                    <p>{this.props.note}</p>
+                </div>
                 <div className='note-buttons'>
                     <Link to={`/edit-note/${this.props.projectId}/${this.props.characterId}/${this.props.note_id}`}>
                         <button>Edit</button>

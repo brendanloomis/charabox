@@ -158,6 +158,7 @@ class Signup extends React.Component {
             })
             .then(user => {
                 this.context.loginUser(user);
+                this.context.loadProjects();
                 this.props.history.push('/projects');
             })
             .catch(error => {

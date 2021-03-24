@@ -1,16 +1,32 @@
 .project-overview {
-    background-color: #e6adec;
+    background-color: #beccf1;
     padding: 10px;
-    margin-bottom: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
     text-align: center;
+    max-width: 70%;
+    margin: auto;
+    margin-bottom: 20px;
 }
 
 .project-overview h3 {
     font-size: 25px;
 }
 
-.character h4 {
-    font-size: 20px;
+.project-overview h4 {
+    font-size: 18px;
+}
+
+@media all and (min-width: 800px) {
+    .project-overview {
+        max-width: 75%;
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+
+    .project-overview h3 {
+        font-size: 28px;
+    }
+
+    .project-overview h4 {
+        font-size: 20px;
+    }
 }

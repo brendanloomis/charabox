@@ -2,10 +2,35 @@ import React from 'react';
 import { findProject } from '../helper-functions';
 import CharaboxContext from '../CharaboxContext';
 import { Link } from 'react-router-dom';
+import config from '../config';
 import './ProjectOverview.css';
 
 class ProjectOverview extends React.Component {
     static contextType = CharaboxContext;
+
+    handleDelete = (project_id) => {
+        fetch(`${config.API_ENDPOINT}/projects/${project_id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${config.API_KEY}`
+            }
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error;
+                    });
+                }
+            })
+            .then(() => {
+                this.props.history.push('/projects');
+                this.context.deleteProject(project_id);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
 
     render() {
         const { projectId } = this.props.match.params;
@@ -17,9 +42,17 @@ class ProjectOverview extends React.Component {
                 <p>{project.project_type}</p>
                 <h4>Summary</h4>
                 <p>{project.project_summary}</p>
-                <Link to={`/edit-project/${project.project_id}`}>
-                        <button>Edit</button>
-                </Link>
+                <div className='project-overview-buttons'>
+                    <Link to={`/edit-project/${project.project_id}`}>
+                            <button>Edit</button>
+                    </Link>
+                    {' '}
+                    <button
+                            onClick={() => this.handleDelete(project.project_id)}
+                        >
+                            Delete
+                    </button>
+                </div>
             </div>
         );
     }

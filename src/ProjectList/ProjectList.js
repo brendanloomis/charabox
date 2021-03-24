@@ -10,12 +10,14 @@ class ProjectList extends React.Component {
     render() {
         const projects = this.context.projects.sort((a, b) => a.project_id - b.project_id).map(project => (
             <li key={project.project_id}>
-                <Project 
-                    project_id={project.project_id}
-                    project_name={project.project_name}
-                    project_type={project.project_type}
-                    project_summary={project.project_summary}
-                />
+                <Link to={`/projects/${project.project_id}`} className='project-link'>
+                    <Project 
+                        project_id={project.project_id}
+                        project_name={project.project_name}
+                        project_type={project.project_type}
+                        project_summary={project.project_summary}
+                    />
+                </Link>
             </li>
         ))
         return (
@@ -23,10 +25,14 @@ class ProjectList extends React.Component {
                 <h2>Projects</h2>
                 <ul>
                     {projects}
+                    <li>
+                        <Link to='/add-project' className='add-project-link'>
+                            <div id='add-project'>
+                                <h3>Add Project</h3>
+                            </div>
+                        </Link>
+                    </li>
                 </ul>
-                <Link to='/add-project' className='add-project-link'>
-                    <button id='add-project-button'>Add Project</button>
-                </Link>
             </div>
         );
     }

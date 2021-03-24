@@ -23,6 +23,7 @@ const CharaboxContext = React.createContext({
     deleteCharacter: () => {},
     deleteProject: () => {},
     deleteNote: () => {},
+    loadProjects: () => {},
 });
 
 export default CharaboxContext;

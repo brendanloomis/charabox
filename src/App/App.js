@@ -302,6 +302,12 @@ class App extends React.Component {
     });
   }
 
+  loadProjects = () => {
+    this.setState({
+      loadedProjects: true
+    });
+  }
+
   getProjects = (projects) => {
     this.setState({ 
       projects,
@@ -410,6 +416,7 @@ class App extends React.Component {
       deleteProject: this.deleteProject,
       deleteCharacter: this.deleteCharacter,
       deleteNote: this.deleteNote,
+      loadProjects: this.loadProjects,
     }
     return (
       <CharaboxContext.Provider value={contextValue}>

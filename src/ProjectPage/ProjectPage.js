@@ -45,7 +45,6 @@ class ProjectPage extends React.Component {
                 <Link to={`/projects/${projectId}`} className='project-page-h2-link'>
                     <h2>{project.project_name}</h2>
                 </Link>
-                <button onClick={() => this.props.history.push('/projects')} className='project-page-button'>Back</button>
                 <ProjectPageNav projectId={projectId}/>
             </div>
         );

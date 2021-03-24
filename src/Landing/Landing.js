@@ -12,10 +12,10 @@ class Landing extends React.Component {
                 </section>
                 <section className='about-2'>
                     <h2>Character Information All in One Place</h2>
-                    <p>Keep all of the characters you create for a project in one area that is easy to manage, so you can stay organized.</p>
+                    <p>Keep all of the characters you create for a project in one area that is easy to manage so you can stay organized.</p>
                 </section>
                 <section className='start'>
-                    <h2>Sign Up and Get Started Today!</h2>
+                    <h2>Sign up and get started today!</h2>
                     <p>Create a <Link to='/signup' className='landing-signup'>new account</Link>, or log in with the demo account to get started today!</p>
                 </section>
             </div>
