@@ -1,6 +1,7 @@
 import React from 'react';
 import CharaboxContext from '../CharaboxContext';
 import ValidationError from '../ValidationError';
+import PropTypes from 'prop-types';
 import './CharacterForm.css';
 
 class CharacterForm extends React.Component {
@@ -173,5 +174,22 @@ class CharacterForm extends React.Component {
         );
     }
 }
+
+CharacterForm.propTypes = {
+    character: PropTypes.shape({
+        character_id: PropTypes.number,
+        name: PropTypes.string,
+        age: PropTypes.string,
+        occupation: PropTypes.string,
+        role: PropTypes.string,
+        interests: PropTypes.string,
+        personality: PropTypes.string,
+        project: PropTypes.number
+    }),
+    project: PropTypes.string,
+    onSubmit: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    error: PropTypes.object
+};
 
 export default CharacterForm;

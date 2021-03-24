@@ -1,6 +1,7 @@
 import React from 'react';
 import CharaboxContext from '../CharaboxContext';
 import ValidationError from '../ValidationError';
+import PropTypes from 'prop-types';
 import './ProjectForm.css';
 
 class ProjectForm extends React.Component {
@@ -99,5 +100,17 @@ class ProjectForm extends React.Component {
         );
     }
 }
+
+ProjectForm.propTypes = {
+    project: PropTypes.shape({
+        project_id: PropTypes.number,
+        project_name: PropTypes.string,
+        project_type: PropTypes.string,
+        project_summary: PropTypes.string
+    }),
+    onSubmit: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    error: PropTypes.object
+};
 
 export default ProjectForm;

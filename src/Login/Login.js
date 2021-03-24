@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import config from '../config';
 import CharaboxContext from '../CharaboxContext';
 import ValidationError from '../ValidationError';
+import PropTypes from 'prop-types';
 import './Login.css';
 
 class Login extends React.Component {
@@ -129,5 +130,11 @@ class Login extends React.Component {
         )
     }
 }
+
+Login.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    })
+};
 
 export default Login;

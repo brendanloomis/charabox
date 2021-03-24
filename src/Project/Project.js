@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import CharaboxContext from '../CharaboxContext';
 import Movie from '../images/Movie.jpg';
 import Book from '../images/Book.jpg';
 import Television from '../images/Television.jpg';
 import Game from '../images/Game.jpg';
 import Play from '../images/Play.jpg';
+import PropTypes from 'prop-types';
 import './Project.css';
 
 class Project extends React.Component {
@@ -32,13 +32,16 @@ class Project extends React.Component {
                     <img src={this.getImage(this.props.project_type)} alt={`${this.props.project_type}`}/>
                 </div>
                 <h3>
-                    <Link to={`/projects/${this.props.project_id}`} className='project-link'>
-                        {this.props.project_name}
-                    </Link>
+                    {this.props.project_name}
                 </h3>
             </div>
         );
     }
 }
+
+Project.propTypes = {
+    project_type: PropTypes.string.isRequired,
+    project_name: PropTypes.string.isRequired
+};
 
 export default Project;

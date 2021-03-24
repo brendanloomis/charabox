@@ -2,6 +2,7 @@ import React from 'react';
 import ProjectForm from '../ProjectForm/ProjectForm';
 import CharaboxContext from '../CharaboxContext';
 import config from '../config';
+import PropTypes from 'prop-types';
 import './AddProject.css';
 
 class AddProject extends React.Component {
@@ -57,5 +58,12 @@ class AddProject extends React.Component {
         );
     }
 }
+
+AddProject.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired,
+        goBack: PropTypes.func.isRequired
+    })
+};
 
 export default AddProject;

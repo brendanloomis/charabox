@@ -2,6 +2,7 @@ import React from 'react';
 import NoteForm from '../NoteForm/NoteForm';
 import config from '../config';
 import CharaboxContext from '../CharaboxContext';
+import PropTypes from 'prop-types';
 import './EditNote.css';
 
 class EditNote extends React.Component {
@@ -104,5 +105,15 @@ class EditNote extends React.Component {
         );
     }
 }
+
+EditNote.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.object.isRequired
+    }),
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired,
+        goBack: PropTypes.func.isRequired
+    })
+};
 
 export default EditNote;

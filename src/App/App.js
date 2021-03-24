@@ -15,6 +15,7 @@ import EditNote from '../EditNote/EditNote';
 import CharaboxContext from '../CharaboxContext';
 import Character from '../Character/Character';
 import ProjectOverview from '../ProjectOverview/ProjectOverview';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import config from '../config';
 import './App.css';
 
@@ -99,32 +100,34 @@ class App extends React.Component {
     if (this.state.checkedIfLoggedIn) {
       return (
         <>
-          <Route 
-            exact
-            path='/'
-            component={Landing}
-          />
-          <Route 
-            exact
-            path='/signup'
-            component={Signup}
-          />
-          <Route
-            exact
-            path='/login'
-            component={Login}
-          />
-          <Route
-            exact
-            path='/projects'
-            render={() => (
-              !this.state.loggedIn ? (
-                <Redirect to='/login' />
-              ) : (
-              <ProjectList />
-              )
-            )}
-          />
+          <ErrorBoundary>
+            <Route 
+              exact
+              path='/'
+              component={Landing}
+            />
+            <Route 
+              exact
+              path='/signup'
+              component={Signup}
+            />
+            <Route
+              exact
+              path='/login'
+              component={Login}
+            />
+            <Route
+              exact
+              path='/projects'
+              render={() => (
+                !this.state.loggedIn ? (
+                  <Redirect to='/login' />
+                ) : (
+                <ProjectList />
+                )
+              )}
+            />
+          </ErrorBoundary>
           {this.renderAfterLoadingProjects()}
         </>
       );
@@ -135,129 +138,133 @@ class App extends React.Component {
     if (this.state.loadedProjects) {
       return (
         <>
-          <Route
-            path='/projects/:projectId'
-            render={(props) => (
-              <ProjectPage {...props} />
-            )}
-          />
-          <Route
-            exact
-            path='/add-project'
-            render={(props) => (
-              <AddProject {...props} />
-            )}
-          />
-          <Route
-            exact
-            path='/edit-project/:project_id'
-            render={(props) => (
-              <EditProject {...props} />
-            )}
-          />
-          <Route
-            exact
-            path='/add-character/:project'
-            render={(props) => (
-              <AddCharacter {...props} />
-            )}
-          />
-          <Route
-            exact
-            path='/edit-character/:character_id'
-            render={(props) => (
-              <EditCharacter {...props} />
-            )}
-          />
-          <Route
-            exact
-            path='/add-note/:project_id/:character'
-            render={(props) => (
-              <AddNote {...props} />
-            )}
-          />
-          <Route
-            exact
-            path='/edit-note/:projectId/:characterId/:note_id'
-            render={(props) => (
-              <EditNote {...props} />
-            )}
-          />
-          <Route
-            exact
-            path='/projects/:projectId'
-            render={(props) => (
-              <ProjectOverview {...props} />
-            )}
-          />
+          <ErrorBoundary>
+            <Route
+              path='/projects/:projectId'
+              render={(props) => (
+                <ProjectPage {...props} />
+              )}
+            />
+            <Route
+              exact
+              path='/add-project'
+              render={(props) => (
+                <AddProject {...props} />
+              )}
+            />
+            <Route
+              exact
+              path='/edit-project/:project_id'
+              render={(props) => (
+                <EditProject {...props} />
+              )}
+            />
+            <Route
+              exact
+              path='/add-character/:project'
+              render={(props) => (
+                <AddCharacter {...props} />
+              )}
+            />
+            <Route
+              exact
+              path='/edit-character/:character_id'
+              render={(props) => (
+                <EditCharacter {...props} />
+              )}
+            />
+            <Route
+                exact
+                path='/add-note/:project_id/:character'
+                render={(props) => (
+                  <AddNote {...props} />
+                )}
+            />
+            <Route
+              exact
+              path='/edit-note/:projectId/:characterId/:note_id'
+              render={(props) => (
+                <EditNote {...props} />
+              )}
+            />
+            <Route
+              exact
+              path='/projects/:projectId'
+              render={(props) => (
+                <ProjectOverview {...props} />
+              )}
+            />
+          </ErrorBoundary>
           {this.renderAfterLoadingCharacters()}
         </>
       );
     } else if (!this.state.loggedIn) {
       return (
         <>
-          <Route
-            path='/projects/:projectId'
-            render={() => (
-              <Redirect to='/login' />
-            )}
-          />
-          <Route
-            exact
-            path='/add-project'
-            render={() => (
+          <ErrorBoundary>
+            <Route
+              path='/projects/:projectId'
+              render={() => (
                 <Redirect to='/login' />
-            )}
-          />
-          <Route
-            exact
-            path='/edit-project/:project_id'
-            render={() => (
-                <Redirect to='/login' />
-            )}
-          />
-          <Route
-            exact
-            path='/add-character/:project'
-            render={() => (
-                <Redirect to='/login' />
-            )}
-          />
-          <Route
-            exact
-            path='/edit-character/:character_id'
-            render={() => (
-                <Redirect to='/login' />
-            )}
-          />
-          <Route
-            exact
-            path='/add-note/:project_id/:character'
-            render={() => (
-                <Redirect to='/login' />
-            )}
-          />
-          <Route
-            exact
-            path='/edit-note/:projectId/:characterId/:note_id'
-            render={() => (
-                <Redirect to='/login' />
-            )}
-          />
-          <Route
-            exact
-            path='/projects/:projectId'
-            render={(props) => (
-                <Redirect to='/login' />
-            )}
-          />
-          <Route
-            exact
-            path='/projects/:projectId/:characterId'
-            render={(props) => ( 
-                <Redirect to='/login' />
-            )}
-          />
+              )}
+            />
+            <Route
+              exact
+              path='/add-project'
+              render={() => (
+                  <Redirect to='/login' />
+              )}
+            />
+            <Route
+              exact
+              path='/edit-project/:project_id'
+              render={() => (
+                  <Redirect to='/login' />
+              )}
+            />
+            <Route
+              exact
+              path='/add-character/:project'
+              render={() => (
+                  <Redirect to='/login' />
+              )}
+            />
+            <Route
+              exact
+              path='/edit-character/:character_id'
+              render={() => (
+                  <Redirect to='/login' />
+              )}
+            />
+            <Route
+              exact
+              path='/add-note/:project_id/:character'
+              render={() => (
+                  <Redirect to='/login' />
+              )}
+            />
+            <Route
+              exact
+              path='/edit-note/:projectId/:characterId/:note_id'
+              render={() => (
+                  <Redirect to='/login' />
+              )}
+            />
+            <Route
+              exact
+              path='/projects/:projectId'
+              render={(props) => (
+                  <Redirect to='/login' />
+              )}
+            />
+            <Route
+              exact
+              path='/projects/:projectId/:characterId'
+              render={(props) => ( 
+                  <Redirect to='/login' />
+              )}
+            />
+          </ErrorBoundary>
         </>
       )
     }
@@ -267,16 +274,18 @@ class App extends React.Component {
     if (this.state.loadedCharacters) {
       return (
         <>
-          <Route
-            exact
-            path='/projects/:projectId/:characterId'
-            render={(props) => (
-              <Character
-                key={props.match.params.characterId}
-                {...props}
-              />
-            )}
-          />
+          <ErrorBoundary>
+            <Route
+              exact
+              path='/projects/:projectId/:characterId'
+              render={(props) => (
+                <Character
+                  key={props.match.params.characterId}
+                  {...props}
+                />
+              )}
+            />
+          </ErrorBoundary>
         </>
       )
     }
@@ -424,7 +433,9 @@ class App extends React.Component {
           <header>
             <h1>Charabox</h1>
           </header>
-          <Nav />
+          <ErrorBoundary>
+            <Nav />
+          </ErrorBoundary>
           {this.renderRoutes()}
         </div>
       </CharaboxContext.Provider>

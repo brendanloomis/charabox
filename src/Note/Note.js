@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CharaboxContext from '../CharaboxContext';
 import config from '../config';
+import PropTypes from 'prop-types';
 import './Note.css';
 
 class Note extends React.Component {
@@ -50,6 +51,13 @@ class Note extends React.Component {
             </div>
         );
     }
+}
+
+Note.propTypes = {
+    note: PropTypes.string.isRequired,
+    projectId: PropTypes.string.isRequired,
+    characterId: PropTypes.string.isRequired,
+    note_id: PropTypes.number.isRequired
 }
 
 export default Note;

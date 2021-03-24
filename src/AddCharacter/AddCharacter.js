@@ -2,6 +2,7 @@ import React from 'react';
 import CharacterForm from '../CharacterForm/CharacterForm';
 import CharaboxContext from '../CharaboxContext';
 import config from '../config';
+import PropTypes from 'prop-types';
 import './AddCharacter.css';
 
 class AddCharacter extends React.Component {
@@ -59,5 +60,15 @@ class AddCharacter extends React.Component {
         );
     }
 }
+
+AddCharacter.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired,
+        goBack: PropTypes.func.isRequired
+    }),
+    match: PropTypes.shape({
+        params: PropTypes.object.isRequired
+    })
+};
 
 export default AddCharacter;

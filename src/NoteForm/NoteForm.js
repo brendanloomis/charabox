@@ -1,6 +1,7 @@
 import React from 'react';
 import CharaboxContext from '../CharaboxContext';
 import ValidationError from '../ValidationError';
+import PropTypes from 'prop-types';
 import './NoteForm.css';
 
 class NoteForm extends React.Component {
@@ -82,5 +83,17 @@ class NoteForm extends React.Component {
         );
     }
 }
+
+NoteForm.propTypes = {
+    note: PropTypes.shape({
+        note_id: PropTypes.number,
+        note: PropTypes.string,
+        character: PropTypes.number
+    }),
+    character: PropTypes.string,
+    onSubmit: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    error: PropTypes.object
+};
 
 export default NoteForm;

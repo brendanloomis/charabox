@@ -4,6 +4,7 @@ import Note from '../Note/Note';
 import { Link } from 'react-router-dom';
 import CharaboxContext from '../CharaboxContext';
 import config from '../config';
+import PropTypes from 'prop-types';
 import './Character.css';
 
 class Character extends React.Component {
@@ -101,5 +102,14 @@ class Character extends React.Component {
         );
     }
 }
+
+Character.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.object.isRequired
+    }),
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    })
+};
 
 export default Character;

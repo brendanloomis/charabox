@@ -3,6 +3,7 @@ import { findProject } from '../helper-functions';
 import CharaboxContext from '../CharaboxContext';
 import { Link } from 'react-router-dom';
 import config from '../config';
+import PropTypes from 'prop-types';
 import './ProjectOverview.css';
 
 class ProjectOverview extends React.Component {
@@ -57,5 +58,14 @@ class ProjectOverview extends React.Component {
         );
     }
 }
+
+ProjectOverview.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }),
+    match: PropTypes.shape({
+        params: PropTypes.object.isRequired
+    })
+};
 
 export default ProjectOverview;

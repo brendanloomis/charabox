@@ -2,6 +2,7 @@ import React from 'react';
 import ProjectForm from '../ProjectForm/ProjectForm';
 import config from '../config';
 import CharaboxContext from '../CharaboxContext';
+import PropTypes from 'prop-types';
 import './EditProject.css';
 
 class EditProject extends React.Component {
@@ -105,5 +106,15 @@ class EditProject extends React.Component {
         );
     }
 }
+
+EditProject.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.object.isRequired
+    }),
+    history: PropTypes.shape({
+        goBack: PropTypes.func.isRequired,
+        push: PropTypes.func.isRequired
+    })
+};
 
 export default EditProject;

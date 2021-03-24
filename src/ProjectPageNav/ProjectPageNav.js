@@ -1,6 +1,7 @@
 import React from 'react';
 import CharaboxContext from '../CharaboxContext';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './ProjectPageNav.css';
 
 class ProjectPageNav extends React.Component {
@@ -30,5 +31,9 @@ class ProjectPageNav extends React.Component {
         );
     }
 }
+
+ProjectPageNav.propTypes = {
+    projectId: PropTypes.string.isRequired
+};
 
 export default ProjectPageNav;

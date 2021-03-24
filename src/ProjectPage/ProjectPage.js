@@ -4,6 +4,7 @@ import CharaboxContext from '../CharaboxContext';
 import config from '../config';
 import ProjectPageNav from '../ProjectPageNav/ProjectPageNav';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './ProjectPage.css';
 
 class ProjectPage extends React.Component {
@@ -50,5 +51,11 @@ class ProjectPage extends React.Component {
         );
     }
 }
+
+ProjectPage.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.object.isRequired
+    })
+};
 
 export default ProjectPage;

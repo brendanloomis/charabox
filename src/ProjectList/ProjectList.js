@@ -12,10 +12,8 @@ class ProjectList extends React.Component {
             <li key={project.project_id}>
                 <Link to={`/projects/${project.project_id}`} className='project-link'>
                     <Project 
-                        project_id={project.project_id}
                         project_name={project.project_name}
                         project_type={project.project_type}
-                        project_summary={project.project_summary}
                     />
                 </Link>
             </li>

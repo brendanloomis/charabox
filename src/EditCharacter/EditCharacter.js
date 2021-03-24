@@ -2,6 +2,7 @@ import React from 'react';
 import CharacterForm from '../CharacterForm/CharacterForm';
 import config from '../config';
 import CharaboxContext from '../CharaboxContext';
+import PropTypes from 'prop-types';
 import './EditCharacter.css';
 
 class EditCharacter extends React.Component {
@@ -108,5 +109,15 @@ class EditCharacter extends React.Component {
         );
     }
 }
+
+EditCharacter.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.object.isRequired
+    }),
+    history: PropTypes.shape({
+        goBack: PropTypes.func.isRequired,
+        push: PropTypes.func.isRequired
+    })
+};
 
 export default EditCharacter;
