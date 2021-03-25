@@ -1,3 +1,7 @@
+.project-list {
+    margin-bottom: 60px;
+}
+
 .project-list h2{
     font-size: 30px;
     text-align: center;
@@ -38,7 +42,12 @@
     padding: 100px 20px;
 }
 
+/* Responsive design for desktop */
 @media all and (min-width: 800px) {
+    .project-list {
+        margin-bottom: 100px;
+    }
+    
     .project-list ul {
         padding: 40px calc((100% - (255px * 3)) / 2);
         justify-content: left;

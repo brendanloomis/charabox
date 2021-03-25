@@ -21,6 +21,7 @@ class EditCharacter extends React.Component {
 
     static contextType = CharaboxContext;
 
+    // get the current information for the character
     componentDidMount() {
         const { character_id } = this.props.match.params;
         fetch(`${config.API_ENDPOINT}/characters/${character_id}`, {
@@ -85,6 +86,7 @@ class EditCharacter extends React.Component {
         this.props.history.goBack();
     }
 
+    // renders the form after the GET request is done
     renderForm = (character) => {
         if (this.state.infoReady) {
             return (

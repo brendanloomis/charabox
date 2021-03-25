@@ -17,6 +17,7 @@ class EditProject extends React.Component {
 
     static contextType = CharaboxContext;
 
+    // get the current information for the project
     componentDidMount() {
         const { project_id } = this.props.match.params;
 
@@ -82,6 +83,7 @@ class EditProject extends React.Component {
         this.props.history.push('/projects');
     }
 
+    // renders the form after the GET request is done
     renderForm = (project) => {
         if (this.state.infoReady) {
             return (

@@ -17,6 +17,7 @@ class NoteForm extends React.Component {
 
     static contextType = CharaboxContext;
 
+    // functions to update state for form inputs
     updateNote(note) {
         this.setState({ note });
     }
@@ -41,6 +42,7 @@ class NoteForm extends React.Component {
     render() {
         const { note_id, note, character } = this.state;
         const { error, onCancel } = this.props;
+        // create options for the character select field
         const characterOptions = this.context.characters.map(char => {
             return (
                 <option key={char.character_id} value={char.character_id}>

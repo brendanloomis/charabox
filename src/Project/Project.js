@@ -11,6 +11,7 @@ import './Project.css';
 class Project extends React.Component {
     static contextType = CharaboxContext;
 
+    // gets the image based on the project type
     getImage = (type) => {
         if (type === 'Movie') {
             return Movie;

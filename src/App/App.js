@@ -32,6 +32,7 @@ class App extends React.Component {
     loadedCharacters: false,
   };
 
+  // get usernames from the server
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/users/usernames`, {
       method: 'GET',
@@ -96,7 +97,6 @@ class App extends React.Component {
   renderRoutes() {
     // render routes after checking if user is logged in
     // redirects paths to login page if the user needs to be logged in to access them
-    //const { projects, characters, notes } = store;
     if (this.state.checkedIfLoggedIn) {
       return (
         <>
@@ -135,6 +135,7 @@ class App extends React.Component {
   }
 
   renderAfterLoadingProjects() {
+    // render these routes after projects are loaded
     if (this.state.loadedProjects) {
       return (
         <>
@@ -199,6 +200,7 @@ class App extends React.Component {
         </>
       );
     } else if (!this.state.loggedIn) {
+      // if user is not logged in, redirect to login page
       return (
         <>
           <ErrorBoundary>
@@ -271,6 +273,7 @@ class App extends React.Component {
   }
 
   renderAfterLoadingCharacters() {
+    // render this route after characters are loaded
     if (this.state.loadedCharacters) {
       return (
         <>
@@ -291,6 +294,7 @@ class App extends React.Component {
     }
   }
 
+  // functions for updating state and context
   loginUser = user => {
     this.setState({
       userInfo: user,
@@ -332,6 +336,7 @@ class App extends React.Component {
     this.setState({ notes });
   }
 
+  // add functions
   addProject = (project) => {
     this.setState({
       projects: [ ...this.state.projects, project ]
@@ -350,6 +355,7 @@ class App extends React.Component {
     });
   }
 
+  // update functions
   updateProject = (updatedProject) => {
     this.setState({
       projects: this.state.projects.map(p => 
@@ -374,6 +380,7 @@ class App extends React.Component {
     });
   }
 
+  // delete functions
   deleteProject = (projectId) => {
     const newProjects = this.state.projects.filter(p => (
       p.project_id !== projectId
@@ -437,6 +444,9 @@ class App extends React.Component {
             <Nav />
           </ErrorBoundary>
           {this.renderRoutes()}
+          <footer>
+            <p>© Brendan Loomis</p>
+          </footer>
         </div>
       </CharaboxContext.Provider>
     );

@@ -12,7 +12,8 @@ class Character extends React.Component {
 
     componentDidMount() {
         const { characterId } = this.props.match.params;
-
+        
+        // get notes for the character
         fetch(`${config.API_ENDPOINT}/notes?characterId=${characterId}`, {
             method: 'GET',
             headers: {

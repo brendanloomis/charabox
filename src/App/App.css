@@ -12,6 +12,16 @@ header {
     margin: 0px;
 }
 
+footer {
+    background-color: #9A89C7;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
 main {
     margin-left: 20px;
     margin-right: 20px;
@@ -29,6 +39,7 @@ button {
     color: #f75151;
 }
 
+/* Responsive design for desktop */
 @media all and (min-width: 800px) {
     h1 {
         font-size: 42px;

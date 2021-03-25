@@ -22,6 +22,7 @@ class CharacterForm extends React.Component {
 
     static contextType = CharaboxContext;
 
+    // functions to update state for form inputs
     updateName(name) {
         this.setState({ name });
     }
@@ -71,6 +72,7 @@ class CharacterForm extends React.Component {
     render() {
         const { character_id, name, age, occupation, role, interests, personality, project } = this.state;
         const { error, onCancel } = this.props;
+        // create options for Project select field
         const projectOptions = this.context.projects.map(project => {
             return (
                 <option key={project.project_id} value={project.project_id}>

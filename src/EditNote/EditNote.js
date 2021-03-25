@@ -16,6 +16,7 @@ class EditNote extends React.Component {
 
     static contextType = CharaboxContext;
 
+    // get the current information for the note
     componentDidMount() {
         const { note_id } = this.props.match.params;
 
@@ -81,6 +82,7 @@ class EditNote extends React.Component {
         this.props.history.push(`/projects/${projectId}/${characterId}`);
     }
 
+    // renders the form after the GET request is done
     renderForm = (note) => {
         if (this.state.infoReady) {
             return (

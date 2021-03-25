@@ -19,6 +19,7 @@ class ProjectForm extends React.Component {
 
     static contextType = CharaboxContext;
 
+    // functions to update state for form inputs
     updateProjectName(project_name) {
         this.setState({ project_name });
     }

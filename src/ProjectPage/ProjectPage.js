@@ -11,6 +11,7 @@ class ProjectPage extends React.Component {
 
     static contextType = CharaboxContext;
 
+    // get characters for the project
     componentDidMount() {
         const { projectId } = this.props.match.params;
 

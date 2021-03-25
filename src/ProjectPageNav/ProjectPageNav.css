@@ -15,6 +15,7 @@
     margin: 5px;
 }
 
+/* Responsive design for desktop */
 @media all and (min-width: 800px) {
     .project-nav-item {
         padding: 7px;

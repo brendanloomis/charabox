@@ -12,6 +12,7 @@
     color: black;
 }
 
+/* Responsive design for desktop */
 @media all and (min-width: 800px) {
     .nav {
         text-align: right;

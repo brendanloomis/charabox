@@ -26,6 +26,7 @@
     color: #e00c6f;
 }
 
+/* Responsive design for desktop */
 @media all and (min-width: 800px) {
     .landing {
         margin: 100px 50px 50px 50px;
