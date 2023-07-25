@@ -55,4 +55,4 @@ Add Note Page:
     * Mocha
     * Chai
     * Supertest
-    * Deployed with Heroku
+    * Deployed with Render
